@@ -1,0 +1,61 @@
+:root {
+  /* BACKGROUNDS */
+  /* Clean, deep radial gradient as requested */
+  --bg-main: hsl(240, 10%, 4%);
+  --bg-card: hsl(240, 10%, 8%);
+  --bg-glass: hsla(240, 10%, 12%, 0.6);
+
+  /* ACCENTS */
+  --primary: hsl(260, 100%, 65%);
+  --primary-glow: hsla(260, 100%, 65%, 0.4);
+  --secondary: hsl(190, 100%, 50%);
+  --accent: hsl(320, 100%, 60%);
+
+  /* TEXT */
+  --text-main: hsl(0, 0%, 100%);
+  --text-muted: hsl(240, 5%, 65%);
+
+  /* FONTS */
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  /* Deep Indigo -> Black Gradient */
+  background: radial-gradient(circle at top, #1a1a2e, #050505);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  width: 100%;
+  max-width: 480px; /* Mobile width constraint for desktop view goodness */
+  margin: 0 auto;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+button {
+  cursor: pointer;
+  font-family: var(--font-heading);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--bg-card);
+  border-radius: 4px;
+}
