@@ -1,73 +1,65 @@
-# React + TypeScript + Vite
+# Tech Conference Companion 📱
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Badge](https://img.shields.io/badge/PWA-Ready-purple) ![Badge](https://img.shields.io/badge/Status-Offline--First-green) ![Badge](https://img.shields.io/badge/Stack-React_|_Supabase_|_Dexie-blue)
 
-Currently, two official plugins are available:
+An offline-first **Progressive Web App (PWA)** built to help attendees navigate tech conferences with unreliable Wi-Fi. It seamlessly synchronizes data between a local IndexedDB and Supabase/PostgreSQL when connectivity is available.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Key Features
 
-## React Compiler
+*   **🎙️ Session Planner**: Create your own agenda. Voice record session notes (stored locally).
+*   **🏢 Expo Booth Tracker**: Track companies you visit. "Suggest Question" generator for networking.
+*   **🤝 Networking**: Generate a personal QR code to share your profile (GitHub, LinkedIn).
+*   **📡 Offline-First**: Works 100% offline using Dexie.js. Syncs automatically in the background.
+*   **🔒 Secure**: Authentication via Supabase with Row Level Security (RLS).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Architecture
 
-## Expanding the ESLint configuration
+This app uses a **Local-First** architecture to ensure zero latency and offline availability.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+*   **Frontend**: React, TypeScript, Vite
+*   **Local Database**: IndexedDB (via Dexie.js)
+*   **Cloud Database**: PostgreSQL (via Supabase)
+*   **Sync Engine**: Custom bi-directional sync logic with timestamp-based conflict resolution.
+*   **PWA**: `vite-plugin-pwa` for service workers and installability.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🚀 Getting Started
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Prerequisites
+*   Node.js 18+
+*   A Supabase project
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Installation
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+1.  Clone the repository:
+    ```bash
+    git clone https://github.com/dheekshu111/tech-summit.git
+    cd tech-conference
+    ```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+2.  Install dependencies:
+    ```bash
+    npm install
+    ```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+3.  Configure Environment:
+    Create a `.env` file with your credentials:
+    ```env
+    VITE_SUPABASE_URL=your_supabase_url
+    VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+    ```
+
+4.  Run Locally:
+    ```bash
+    npm run dev
+    ```
+
+## 📦 Deployment (Vercel)
+
+This project is optimized for Vercel.
+
+1.  Connect your GitHub repository to Vercel.
+2.  Add the **Environment Variables** (`VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`) in the Vercel dashboard.
+3.  Deploy!
+
+---
+*Built with ❤️ for Tech Summits.*
